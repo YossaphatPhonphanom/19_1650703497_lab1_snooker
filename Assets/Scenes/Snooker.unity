@@ -1065,6 +1065,7 @@ MonoBehaviour:
   cueBall: {fileID: 574366910}
   ballLine: {fileID: 2040223814}
   xInput: 0
+  force: 50
 --- !u!4 &1543558633
 Transform:
   m_ObjectHideFlags: 0
