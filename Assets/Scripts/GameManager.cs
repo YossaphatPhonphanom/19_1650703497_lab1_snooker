@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField ]private int playerScore;
+    [SerializeField] private int playerScore;
+    public int Playerscore { get; set; }
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private GameObject[] ballPositions;
 
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float xInput;
     [SerializeField] private float force;
     [SerializeField] private GameObject camera;
+    [SerializeField] private TMP_Text scoreText;
     
     
     
@@ -28,8 +31,10 @@ public class GameManager : MonoBehaviour
         camera = Camera.main.gameObject;
         CameraBehindBall();
         
+        UpdateScoreText();
+        
         //set ball on the table
-        SetBalls(BallColors.White,0);
+        //SetBalls(BallColors.White,0);
         SetBalls(BallColors.Red,1);
         SetBalls(BallColors.Yellow,2);
         SetBalls(BallColors.Green,3);
@@ -38,6 +43,11 @@ public class GameManager : MonoBehaviour
         SetBalls(BallColors.Pink,6);
         SetBalls(BallColors.Black,7);
         
+    }
+
+    public void UpdateScoreText()
+    {
+        scoreText.text = $" PlayerScore: {Playerscore}";
     }
 
     // Update is called once per frame
@@ -67,7 +77,7 @@ public class GameManager : MonoBehaviour
     void RotateBall()
     {
         xInput = Input.GetAxis("Horizontal");
-        cueBall.transform.Rotate(new Vector3(0f,xInput/10,0f));
+        cueBall.transform.Rotate(new Vector3(0f,xInput/5,0f));
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
